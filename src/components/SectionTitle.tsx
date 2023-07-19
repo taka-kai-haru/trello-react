@@ -27,12 +27,16 @@ export const SectionTitle: FC<Props> = (props) => {
     }
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        changeTitle(section.id, inputTitle);
-        setIsEdit(false);
+        if (inputTitle !== "") {
+            changeTitle(section.id, inputTitle);
+            setIsEdit(false);
+        }
     }
     const handleBlur = () => {
-        changeTitle(section.id, inputTitle);
-        setIsEdit(false);
+        if (inputTitle !== "") {
+            changeTitle(section.id, inputTitle);
+            setIsEdit(false);
+        }
     }
     return (
         <div css={titleArea} onClick={handleClick}>

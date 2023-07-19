@@ -22,7 +22,7 @@ export const Header: FC = () => {
                     <Avatar
                         src={user.photoUrl}
                     />
-                    <Button color="inherit">ログアウト</Button>
+                    <Button color="inherit" onClick={() => auth.signOut()}>ログアウト</Button>
                 </Toolbar>
             </AppBar>
         </Box>
