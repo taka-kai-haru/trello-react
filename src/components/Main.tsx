@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import {TaskCards} from "./TaskCards";
+import {SectionCards} from "./SectionCards";
 import { auth } from "../firebase";
 import {Header} from "./Header";
 
@@ -8,7 +8,7 @@ export const Main = () => {
     return (
         <div css={background}>
         <Header />
-        <TaskCards/>
+        <SectionCards/>
         <button onClick={() => auth.signOut()}>ログアウト</button>
         </div>
     )

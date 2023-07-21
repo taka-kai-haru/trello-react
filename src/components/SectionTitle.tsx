@@ -10,7 +10,7 @@ type Props = {
     section: {
         id: string;
         title: string;
-        tasks: {
+        cards: {
             id: string;
             title: string;
         }[];
@@ -49,6 +49,7 @@ export const SectionTitle: FC<Props> = (props) => {
                         onChange={(e) => setInputTitle(e.target.value)}
                         autoFocus
                         onBlur={handleBlur}
+                        autoComplete="off"
                     />
                 </form>
                 :
@@ -62,7 +63,7 @@ export const SectionTitle: FC<Props> = (props) => {
 }
 
 const titleArea = css`
-  margin-bottom: 10px;
+  margin: 0 5px 0;
   width: 80%;
   cursor: pointer;
 `;
@@ -71,7 +72,7 @@ const sectionTitle = css`
   font-size: 1.2rem;
   font-weight: 700;
   //margin: 10px 0 20px;
-  margin: 0;
+  margin-top: 1px;
   padding: 0;
 `;
 

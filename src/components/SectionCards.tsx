@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import {css} from "@emotion/react";
 import {DragDropContext, Draggable, Droppable, DropResult, OnDragStartResponder} from "react-beautiful-dnd";
 import dummyData from "../dummyData";
 import {useState} from "react";
@@ -9,9 +9,10 @@ import {storage, db, auth} from "../firebase";
 import {SectionTitle} from "./SectionTitle";
 import {SectionDeleteButton} from "./button/SectionDeleteButton";
 import {AddSection} from "./AddSection";
-import { v4 as uuid } from "uuid";
+import {v4 as uuid} from "uuid";
+import {AddCard} from "./AddCard";
 
-interface Task {
+interface Card {
     id: string;
     title: string;
 }
@@ -19,11 +20,11 @@ interface Task {
 interface Section {
     id: string;
     title: string;
-    tasks: Task[];
+    cards: Card[];
 }
 
 
-export const TaskCards = () => {
+export const SectionCards = () => {
     const [data, setData] = useState<Section[]>(dummyData);
     const [columnDropping, setColumnDropping] = useState(false);
 
@@ -58,39 +59,39 @@ export const TaskCards = () => {
         if (source.droppableId !== destination.droppableId) {
 
             // 同じカラム内でのタスクの入れ替え
-            const sourceColIndex = data.findIndex((col) => col.id === source.droppableId); // 移動元のtasksのindex
-            const destinationColIndex = data.findIndex((col) => col.id === destination.droppableId); // 移動先のtasksのindex
-            const sourceCol = data[sourceColIndex]; // 移動元のtasksの全データを取得
-            const destinationCol = data[destinationColIndex]; // 移動先のtasksの全データを取得
+            const sourceColIndex = data.findIndex((col) => col.id === source.droppableId); // 移動元のcardsのindex
+            const destinationColIndex = data.findIndex((col) => col.id === destination.droppableId); // 移動先のcardsのindex
+            const sourceCol = data[sourceColIndex]; // 移動元のcardsの全データを取得
+            const destinationCol = data[destinationColIndex]; // 移動先のcardsの全データを取得
 
-            const sourceTasks = [...sourceCol.tasks]; // 移動元のtasksの全データをコピー
-            const destinationTasks = [...destinationCol.tasks]; // 移動元のtasksの全データをコピー
+            const sourceCards = [...sourceCol.cards]; // 移動元のcardsの全データをコピー
+            const destinationCards = [...destinationCol.cards]; // 移動元のcardsの全データをコピー
 
             // 動かし始めたタスクの削除
-            const [removed] = sourceTasks.splice(source.index, 1); // 移動元のtasksから移動したタスクを削除
+            const [removed] = sourceCards.splice(source.index, 1); // 移動元のcardsから移動したタスクを削除
             // 動かした後のカラムにタスクの追加
-            destinationTasks.splice(destination.index, 0, removed); // 移動先のtasksに移動したタスクを追加
+            destinationCards.splice(destination.index, 0, removed); // 移動先のcardsに移動したタスクを追加
 
-            data[sourceColIndex].tasks = sourceTasks; // 移動元のtasksを更新
-            data[destinationColIndex].tasks = destinationTasks; // 移動元のtasksを更新
+            data[sourceColIndex].cards = sourceCards; // 移動元のcardsを更新
+            data[destinationColIndex].cards = destinationCards; // 移動元のcardsを更新
 
             setData(data); // dataを更新
 
         } else {
 
             // 同じカラム内でのタスクの入れ替え
-            const sourceColIndex = data.findIndex((col) => col.id === source.droppableId); // 移動元のtasksのindex
+            const sourceColIndex = data.findIndex((col) => col.id === source.droppableId); // 移動元のcardsのindex
             console.log(sourceColIndex);
-            const sourceCol = data[sourceColIndex]; // 移動元のtasksの全データを取得
+            const sourceCol = data[sourceColIndex]; // 移動元のcardsの全データを取得
             console.log(sourceCol);
 
-            const sourceTasks = [...sourceCol.tasks]; // 移動元のtasksの全データをコピー
+            const sourceCards = [...sourceCol.cards]; // 移動元のcardsの全データをコピー
             // タスクの削除
-            const [removed] = sourceTasks.splice(source.index, 1); // 移動元のtasksから移動したタスクを削除
+            const [removed] = sourceCards.splice(source.index, 1); // 移動元のcardsから移動したタスクを削除
             // タスクの追加
-            sourceTasks.splice(destination.index, 0, removed); // 移動先のtasksに移動したタスクを追加
+            sourceCards.splice(destination.index, 0, removed); // 移動先のcardsに移動したタスクを追加
 
-            data[sourceColIndex].tasks = sourceTasks; // 移動元のtasksを更新
+            data[sourceColIndex].cards = sourceCards; // 移動元のcardsを更新
             setData(data); // dataを更新
 
         }
@@ -105,36 +106,36 @@ export const TaskCards = () => {
         // });
         // db.collection("contents").doc(auth.currentUser?.uid).set(data);
         data.map((section, index) => {
-            const {id, title, tasks} = section;
-            const formattedTasks = tasks.map(task => ({...task}));
-            const formattedData = {id, title, tasks: formattedTasks, order: index};
+            const {id, title, cards} = section;
+            const formattedCards = cards.map(card => ({...card}));
+            const formattedData = {id, title, cards: formattedCards, order: index};
             db.collection("users").doc(auth.currentUser?.uid).collection("contents").doc(id).set(formattedData);
             // db.collection("contents").doc(auth.currentUser?.uid).set(formattedData);
-            })
-        }
+        })
+    }
 
 
     // FireStoreに対象データがあれば削除する。
     const deleteFireStore = () => {
         db.collection("users").doc(auth.currentUser?.uid).collection("contents").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                db.collection("users").doc(auth.currentUser?.uid).collection("contents").doc(doc.id).delete();
-            });
-        }
+                querySnapshot.forEach((doc) => {
+                    db.collection("users").doc(auth.currentUser?.uid).collection("contents").doc(doc.id).delete();
+                });
+            }
         );
     }
 
     const selectFireStore = () => {
         let dadata: any = [];
         db.collection("users").doc(auth.currentUser?.uid).collection("contents").orderBy("order").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                const docData = doc.data();
-                dadata.push(docData);
-            });
+                querySnapshot.forEach((doc) => {
+                    const docData = doc.data();
+                    dadata.push(docData);
+                });
                 console.log(dadata);
                 console.log(data);
                 setData(dadata);
-        }
+            }
         );
 
 
@@ -157,11 +158,34 @@ export const TaskCards = () => {
         const newSection = {
             id: uuid(),
             title: title,
-            tasks: [],
+            cards: [],
         };
         const newData = [...data, newSection];
         setData(newData);
     }
+
+    // dataのsectionを削除する関数
+    const deleteSection = (id: string) => {
+        const newData = data.filter((section) => section.id !== id);
+        setData(newData);
+    }
+
+    // dataのcardを追加する関数
+    const addCard = (sectionId: string, title: string) => {
+        const newCard = {
+            id: uuid(),
+            title: title,
+        };
+        const newData = data.map((section) => {
+            if (section.id === sectionId) {
+                return {...section, cards: [...section.cards, newCard]};
+            } else {
+                return section;
+            }
+        });
+        setData(newData);
+    }
+
 
     // Drag開始時に実行される関数
     const onDragStart = (tmp: any) => {
@@ -200,7 +224,7 @@ export const TaskCards = () => {
                                         >
                                             <div css={sectionTitleSectionDeleteArea}>
                                                 <SectionTitle changeTitle={changeTitle} section={section}/>
-                                                <SectionDeleteButton/>
+                                                <SectionDeleteButton id={section.id} deleteSection={deleteSection}/>
                                             </div>
                                             <Droppable droppableId={section.id}>
                                                 {(provided: any) => (
@@ -208,8 +232,8 @@ export const TaskCards = () => {
                                                          ref={provided.innerRef}
                                                          {...provided.droppableProps}
                                                     >
-                                                        {section.tasks.map((task, index) => (
-                                                            <Draggable key={task.id} draggableId={task.id}
+                                                        {section.cards.map((card, index) => (
+                                                            <Draggable key={card.id} draggableId={card.id}
                                                                        index={index}>
                                                                 {(provided: any, snapshot: any) => (
                                                                     <div
@@ -221,11 +245,12 @@ export const TaskCards = () => {
                                                                             opacity: snapshot.isDragging ? 0.5 : 1,
                                                                         }}
                                                                     >
-                                                                        <Card>{task.title}</Card>
+                                                                        <Card>{card.title}</Card>
                                                                     </div>
                                                                 )}
                                                             </Draggable>
                                                         ))}
+                                                        <AddCard addCard={addCard} sectionId={section.id}/>
                                                         {provided.placeholder}
                                                     </div>
                                                 )}
@@ -260,7 +285,7 @@ export const TaskCards = () => {
 
 // 大枠
 const Container = css`
-    margin: 30px 30px;
+  margin: 30px 30px;
 `;
 
 // Sectionの枠
@@ -268,11 +293,9 @@ const trelloSection = css`
   min-width: 320px;
   /* border: 1px solid white; */
   background: rgb(30, 25, 31);
-  background: linear-gradient(
-          126deg,
-          rgba(30, 25, 31, 1) 0%,
-          rgba(51, 45, 54, 1) 96%
-  );
+  background: linear-gradient(126deg,
+  rgba(30, 25, 31, 1) 0%,
+  rgba(51, 45, 54, 1) 96%);
   padding: 10px;
   border-radius: 10px;
   margin-left: 10px;
@@ -281,7 +304,7 @@ const trelloSection = css`
 const sectionTitleSectionDeleteArea = css`
   display: flex;
   justify-content: space-between;
-  `;
+`;
 
 const sectionList = css`
   display: flex;

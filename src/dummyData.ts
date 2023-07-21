@@ -4,7 +4,7 @@ const dummyData = [
     {
         id: uuid(),
         title: "📝今からやる事",
-        tasks: [
+        cards: [
             {
                 id: uuid(),
                 title: "Reactの勉強",
@@ -22,7 +22,7 @@ const dummyData = [
     {
         id: uuid(),
         title: "🚀今後やること",
-        tasks: [
+        cards: [
             {
                 id: uuid(),
                 title: "コーディング",
@@ -36,7 +36,7 @@ const dummyData = [
     {
         id: uuid(),
         title: "🌳終わったこと",
-        tasks: [
+        cards: [
             {
                 id: uuid(),
                 title: "読書",
