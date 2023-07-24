@@ -1,66 +1,61 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import {FC, useState} from "react";
+import { FC, useState } from "react";
 import TextField from "@mui/material/TextField";
-import {styled} from "@mui/material";
-
+import { styled } from "@mui/material";
 
 type Props = {
-    changeTitle: (id: string,title: string) => void;
-    section: {
-        id: string;
-        title: string;
-        cards: {
-            id: string;
-            title: string;
-        }[];
-        }
-    }
-
+  changeTitle: (id: string, title: string) => void;
+  section: {
+    id: string;
+    title: string;
+    cards: {
+      cardId: string;
+      title: string;
+    }[];
+  };
+};
 
 export const SectionTitle: FC<Props> = (props) => {
-    const {changeTitle, section} = props;
-    const [isEdit, setIsEdit] = useState(false);
-    const [inputTitle, setInputTitle] = useState(section.title);
-    const handleClick = () => {
-        setIsEdit(true);
+  const { changeTitle, section } = props;
+  const [isEdit, setIsEdit] = useState(false);
+  const [inputTitle, setInputTitle] = useState(section.title);
+  const handleClick = () => {
+    setIsEdit(true);
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (inputTitle !== "") {
+      changeTitle(section.id, inputTitle);
+      setIsEdit(false);
     }
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (inputTitle !== "") {
-            changeTitle(section.id, inputTitle);
-            setIsEdit(false);
-        }
+  };
+  const handleBlur = () => {
+    if (inputTitle !== "") {
+      changeTitle(section.id, inputTitle);
+      setIsEdit(false);
     }
-    const handleBlur = () => {
-        if (inputTitle !== "") {
-            changeTitle(section.id, inputTitle);
-            setIsEdit(false);
-        }
-    }
-    return (
-        <div css={titleArea} onClick={handleClick}>
-            {isEdit ?
-                <form onSubmit={handleSubmit}>
-                    <WhilteTextField
-                        id="outlined-basic"
-                        variant="outlined"
-                        value={inputTitle}
-                        onChange={(e) => setInputTitle(e.target.value)}
-                        autoFocus
-                        onBlur={handleBlur}
-                        autoComplete="off"
-                    />
-                </form>
-                :
-                <div css={sectionTitle}>
-                    {section.title}
-                </div>
-            }
-
-        </div>
-    )
-}
+  };
+  return (
+    <div css={titleArea} onClick={handleClick}>
+      {isEdit ? (
+        <form onSubmit={handleSubmit}>
+          <WhilteTextField
+            id="outlined-basic"
+            variant="outlined"
+            value={inputTitle}
+            onChange={(e) => setInputTitle(e.target.value)}
+            autoFocus
+            onBlur={handleBlur}
+            autoComplete="off"
+          />
+        </form>
+      ) : (
+        <div css={sectionTitle}>{section.title}</div>
+      )}
+    </div>
+  );
+};
 
 const titleArea = css`
   margin: 0 5px 0;
