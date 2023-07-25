@@ -27,6 +27,7 @@ import TimelineIcon from "@mui/icons-material/Timeline";
 import Grid from "@mui/material/Unstable_Grid2";
 import { createTheme } from "@mui/material/styles";
 import {
+  DatePicker,
   DateTimePicker,
   LocalizationProvider,
   PickersDay,
@@ -103,13 +104,20 @@ export const CardEdit: FC<Props> = (props) => {
 
   useEffect(() => {
     setInputTitle(card.title);
-  }, [card.title]);
+    if (card.limitDateTime === "") {
+      setLimitDate(null);
+    } else {
+      setLimitDate(new Date(card.limitDateTime));
+    }
+    setLabelColor(card.labelColor);
+    setProgress(parseInt(card.progress));
+    setMemo(card.memo);
+  }, [card]);
 
   const renderWeekEndPickerDay = (
-    day: Date,
-    selectedDate: Date | null,
-    ayInCurrentMonth: boolean,
-    dayComponent: PickersDayProps<Date>,
+    date: Date,
+    _selectedDates: Array<Date | null>,
+    pickersDayProps: PickersDayProps<Date>,
   ) => {
     const switchDayColor = (getday: number) => {
       switch (
@@ -124,8 +132,8 @@ export const CardEdit: FC<Props> = (props) => {
       }
     };
     const newPickersDayProps = {
-      ...dayComponent,
-      sx: switchDayColor(day.getDay()),
+      ...pickersDayProps,
+      sx: switchDayColor(date.getDay()),
     };
     return <PickersDay {...newPickersDayProps} />;
   };
@@ -166,9 +174,17 @@ export const CardEdit: FC<Props> = (props) => {
     },
   };
 
+  const modalHandleClose = (
+    e: React.MouseEvent<HTMLInputElement>,
+    reason: "backdropClick",
+  ) => {
+    if (reason === "backdropClick") return;
+    setOpenEditModal(false);
+  };
+
   return (
     <>
-      <Modal open={openEditModal} onClose={() => setOpenEditModal(false)}>
+      <Modal open={openEditModal} onClose={modalHandleClose}>
         <div style={getModalStyle()} css={editModelStyle}>
           <form onSubmit={handleSubmit}>
             <Grid
@@ -241,19 +257,28 @@ export const CardEdit: FC<Props> = (props) => {
                       localeText={{
                         previousMonth: "前月を表示", // < のツールチップ
                         nextMonth: "次月を表示", // > のツールチップ
+                        cancelButtonLabel: "キャンセル", // キャンセルボタンのテキスト
+                        todayButtonLabel: "今日", // 今日ボタンのテキスト
+                        clearButtonLabel: "クリア", // クリアボタンのテキスト
+                        // okButtonLabel: "選択", // OKボタンのテキスト
                       }}
                     >
-                      <DateTimePicker
+                      <DatePicker
                         label="期限を選択"
                         value={limitDate}
                         onChange={changeDateHandler}
-                        format="yyyy年M月d日 HH:mm"
+                        format="yyyy年M月d日"
                         // renderDay={renderWeekEndPickerDay}
+                        // viewRenderers={renderWeekEndPickerDay}
                         // PaperProps={dateTitleColorStyles.paperprops}
                         // sx={dateTitleColorStyles}
-                        closeOnSelect={false}
+                        // closeOnSelect={false}
+
                         slotProps={{
-                          actionBar: { actions: ["clear", "cancel", "accept"] },
+                          actionBar: {
+                            actions: ["clear", "cancel", "today"],
+                          },
+                          // textField: { size: "small" },
                         }}
                       />
                     </LocalizationProvider>

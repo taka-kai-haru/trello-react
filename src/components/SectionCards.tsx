@@ -330,35 +330,42 @@ export const SectionCards: FC = () => {
                             ref={provided.innerRef}
                             {...provided.droppableProps}
                           >
-                            {section.cards.map((card, index) => (
-                              <Draggable
-                                key={card.cardId}
-                                draggableId={card.cardId}
-                                index={index}
-                                // disableInteractiveElementBlocking={false}
-                              >
-                                {(provided: any, snapshot: any) => (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    style={{
-                                      ...provided.draggableProps.style,
-                                      opacity: snapshot.isDragging ? 0.5 : 1,
-                                    }}
+                            <div css={sectionListStyle}>
+                              <div css={sectionInnerListStyle}>
+                                {section.cards.map((card, index) => (
+                                  <Draggable
+                                    key={card.cardId}
+                                    draggableId={card.cardId}
+                                    index={index}
+                                    // disableInteractiveElementBlocking={false}
                                   >
-                                    <div
-                                      onClick={() =>
-                                        openEditModalFunc(section.id, card)
-                                      }
-                                    >
-                                      <Card>{card.title}</Card>
-                                    </div>
-                                  </div>
-                                )}
-                              </Draggable>
-                            ))}
-                            {provided.placeholder}
+                                    {(provided: any, snapshot: any) => (
+                                      <div
+                                        css={draggingCardStyle}
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        style={{
+                                          ...provided.draggableProps.style,
+                                          opacity: snapshot.isDragging
+                                            ? 0.5
+                                            : 1,
+                                        }}
+                                      >
+                                        <div
+                                          onClick={() =>
+                                            openEditModalFunc(section.id, card)
+                                          }
+                                        >
+                                          <Card>{card.title}</Card>
+                                        </div>
+                                      </div>
+                                    )}
+                                  </Draggable>
+                                ))}
+                                {provided.placeholder}
+                              </div>
+                            </div>
                             <AddCard addCard={addCard} sectionId={section.id} />
                           </div>
                         )}
@@ -399,6 +406,28 @@ export const SectionCards: FC = () => {
 // 大枠
 const Container = css`
   margin: 30px 30px;
+  //max-height: calc(100vh - 150px);
+  //display: inline-flex;
+  //min-width: 100vw;
+`;
+
+const sectionListStyle = css`
+  //margin: 5px 0 5px 0;
+  //margin: 5px 5px 5px 0;
+  padding: 5px 0 0 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 220px);
+`;
+
+const draggingCardStyle = css`
+  padding: 5px 0 5px 0;
+`;
+
+const sectionInnerListStyle = css`
+  padding: 0 6px 0 6px;
+  margin: 0;
 `;
 
 // Sectionの枠
@@ -412,8 +441,8 @@ const trelloSection = css`
     rgba(30, 25, 31, 1) 0%,
     rgba(51, 45, 54, 1) 96%
   );
-  padding: 10px;
-  border-radius: 10px;
+  padding: 10px 5px 10px 5px;
+  border-radius: 8px;
   margin-left: 10px;
 `;
 

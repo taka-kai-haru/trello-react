@@ -11,6 +11,5 @@ const cardStyle = css`
   background: rgb(145, 137, 145);
   background: linear-gradient(126deg, rgb(79, 73, 79) 0%, rgb(68, 64, 69) 96%);
   border-radius: 10px;
-  margin: 10px 0 10px 0;
   cursor: pointer;
 `;

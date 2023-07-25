@@ -58,6 +58,7 @@ export const SectionTitle: FC<Props> = (props) => {
 };
 
 const titleArea = css`
+  padding: 0 10px 0 10px;
   margin: 0 5px 0;
   width: 80%;
   cursor: pointer;
