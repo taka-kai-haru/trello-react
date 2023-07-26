@@ -67,7 +67,6 @@ export const AddCard: FC<Props> = (props) => {
                 handleAddCard();
               }
             }}
-            // align="top"
           />
 
           <div css={cardAddButtonArea}>
@@ -93,7 +92,7 @@ const addCardStyle = css`
   padding: 0;
   //background: rgb(145, 137, 145);
   //background: linear-gradient(126deg, rgb(79, 73, 79) 0%, rgb(68, 64, 69) 96%);
-
+  margin: 0 6px 6px 6px;
   border-radius: 10px;
   margin-top: 10px;
   display: flex;
@@ -137,6 +136,6 @@ const cardStyle = css`
   padding: 16px 18px 16px 18px;
   background: rgb(145, 137, 145);
   background: linear-gradient(126deg, rgb(79, 73, 79) 0%, rgb(68, 64, 69) 96%);
-  border-radius: 10px;
-  margin-top: 10px;
+  border-radius: 8px;
+  margin: 5px 12px 6px 12px;
 `;

@@ -49,7 +49,7 @@ export const AddSection: FC<Props> = (props) => {
     <div css={columnDropping ? droppingAddSectionStyle : addSectionStyle}>
       <div css={isEdit ? style : generalAddSectionStyle}>
         {isEdit ? (
-          <>
+          <div css={inputAreaStyle}>
             <form onSubmit={handleSubmit}>
               <WhiteTextField
                 id="outlined-basic"
@@ -58,6 +58,9 @@ export const AddSection: FC<Props> = (props) => {
                 onChange={(e) => setInputTitle(e.target.value)}
                 autoFocus
                 autoComplete="off"
+                inputProps={{
+                  maxLength: 13,
+                }}
               />
             </form>
             <div css={sectionTitleButtonArea}>
@@ -72,9 +75,9 @@ export const AddSection: FC<Props> = (props) => {
               </ThemeProvider>
               <CloseIcon onClick={closeIconHandleClick} css={closeIcon} />
             </div>
-          </>
+          </div>
         ) : (
-          <div onClick={handleClick}>
+          <div onClick={handleClick} css={addButtonAreaStyle}>
             <AddIcon />
             <span css={titleArea}>リストを追加</span>
           </div>
@@ -87,20 +90,23 @@ export const AddSection: FC<Props> = (props) => {
 // 通常css
 const addSectionStyle = css`
   width: 320px;
-  flex: 0 0 320px;
-  margin-left: 4px;
+  //flex: 0 0 320px;
+  min-width: 320px;
+  margin: 0 16px 0 0;
+  //padding: 0 10px 0 0;
 `;
 
 // SectionDrop中css
 const droppingAddSectionStyle = css`
-  width: 640px;
-  flex: 0 0 640px;
-  margin-left: 24px;
+  width: 676px;
+  flex: 0 0 676px;
+  margin-left: 16px;
   display: flex;
   justify-content: flex-end;
 `;
 
 const generalAddSectionStyle = css`
+  width: 320px;
   min-width: 320px;
   /* border: 1px solid white; */
   background: rgb(30, 25, 31);
@@ -109,11 +115,19 @@ const generalAddSectionStyle = css`
     rgb(38, 35, 38) 0%,
     rgba(51, 45, 54, 1) 96%
   );
-  padding: 10px;
-  border-radius: 10px;
-  margin-left: 10px;
+  padding: 10px 5px 10px 5px;
+  border-radius: 8px;
+  margin: 0 16px 0 0;
   opacity: 0.6;
   cursor: pointer;
+`;
+
+const inputAreaStyle = css`
+  margin: 0 15px 5px 15px;
+`;
+
+const addButtonAreaStyle = css`
+  margin: 5px 10px 0 10px;
 `;
 
 const sectionTitleButtonArea = css`
@@ -130,6 +144,7 @@ const closeIcon = css`
 
 const titleArea = css`
   vertical-align: top;
+  padding: 0 3px 0 3px;
 `;
 
 const whiteInput = css`
@@ -137,8 +152,9 @@ const whiteInput = css`
     font-size: 1.2rem;
     font-weight: 700;
     color: #e4e4e4;
-    padding: 0;
+    padding: 0 3px 0 3px;
     margin: 0.6px 0;
+    width: 260px;
   }
 
   .MuiOutlinedInput-root {

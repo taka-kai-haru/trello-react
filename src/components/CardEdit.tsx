@@ -417,7 +417,7 @@ const editModelStyle = css`
   outline: none;
   position: absolute;
   width: 700px;
-  height: 700px;
+  height: 650px;
   border-radius: 10px;
   background-color: #262426;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
@@ -430,8 +430,9 @@ const whiteTextFieldStyle = css`
     font-size: 1.2rem;
     font-weight: 700;
     color: #e4e4e4;
-    padding: 0;
-    margin: 0.6px 0;
+    padding: 0 3px 0 3px;
+    margin: 0.6px 0 0 0;
+    
     width: 500px;
   }
 
@@ -454,6 +455,7 @@ const deleteButtonStyle = css`
 const titleStyle = css`
   font-size: 1.2rem;
   font-weight: 700;
+  padding: 0 3px 0 3px;
   //margin: 10px 0 20px;
   //margin-top: 2px;
 `;

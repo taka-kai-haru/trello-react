@@ -395,17 +395,17 @@ export const SectionCards: FC = () => {
         deleteCard={deleteCard}
       />
 
-      <button onClick={() => console.log(data)}>console.log(data)</button>
-      <button onClick={() => insertFireStore()}>FireStoreに追加</button>
-      <button onClick={() => deleteFireStore()}>FireStoreから削除</button>
-      <button onClick={() => selectFireStore()}>FireStoreから取得</button>
+      {/*<button onClick={() => console.log(data)}>console.log(data)</button>*/}
+      {/*<button onClick={() => insertFireStore()}>FireStoreに追加</button>*/}
+      {/*<button onClick={() => deleteFireStore()}>FireStoreから削除</button>*/}
+      {/*<button onClick={() => selectFireStore()}>FireStoreから取得</button>*/}
     </div>
   );
 };
 
 // 大枠
 const Container = css`
-  margin: 30px 30px;
+  //margin: 30px 30px;
   //max-height: calc(100vh - 150px);
   //display: inline-flex;
   //min-width: 100vw;
@@ -419,6 +419,7 @@ const sectionListStyle = css`
   overflow-x: hidden;
   overflow-y: auto;
   max-height: calc(100vh - 220px);
+  scrollbar-gutter: stable;
 `;
 
 const draggingCardStyle = css`
@@ -427,7 +428,7 @@ const draggingCardStyle = css`
 
 const sectionInnerListStyle = css`
   padding: 0 6px 0 6px;
-  margin: 0;
+  margin: 0 0 0 6px;
 `;
 
 // Sectionの枠
@@ -443,7 +444,9 @@ const trelloSection = css`
   );
   padding: 10px 5px 10px 5px;
   border-radius: 8px;
-  margin-left: 10px;
+  //margin-left: 16px;
+  margin: 0 16px 0 0;
+  display: inline-block;
 `;
 
 const sectionTitleSectionDeleteArea = css`
@@ -452,6 +455,15 @@ const sectionTitleSectionDeleteArea = css`
 `;
 
 const sectionList = css`
+  //display: flex;
+  //align-items: flex-start;
+  //min-width: 100vw;
+  padding: 0 20px 0 20px;
+  white-space: nowrap;
+  overflow-x: auto;
+  height: calc(100vh - 80px);
   display: flex;
   align-items: flex-start;
+  width: calc(100vw - 40px);
+  //padding: 0 30px;
 `;
