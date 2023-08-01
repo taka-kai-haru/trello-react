@@ -3,20 +3,12 @@ import { css } from "@emotion/react";
 import { FormControl, FormLabel, Grid, Switch } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { FC, useEffect, useState } from "react";
+import { LabelColor } from "../property/LabelColor";
 
 interface ColorSelectionProps {
   labelColor: string;
   setLabelColor: (color: string) => void;
 }
-
-const colorOptions = [
-  "#233075",
-  "#852e2e",
-  "#654f1c",
-  "#1b5733",
-  "#5b487a",
-  "#5d636c",
-];
 
 export const ColorSelection: FC<ColorSelectionProps> = (props) => {
   const { labelColor, setLabelColor } = props;
@@ -42,7 +34,7 @@ export const ColorSelection: FC<ColorSelectionProps> = (props) => {
     if (isColorSelectPossible) {
       setLabelColor("");
     } else {
-      setLabelColor(colorOptions[0]);
+      setLabelColor(LabelColor[0]);
     }
 
     setIsColorSelectPossible(!isColorSelectPossible);
@@ -57,7 +49,7 @@ export const ColorSelection: FC<ColorSelectionProps> = (props) => {
         />
         {isColorSelectPossible ? (
           <>
-            {colorOptions.map((color) => (
+            {LabelColor.map((color) => (
               <div
                 css={ColorPickerBox(labelColor === color)}
                 key={color}

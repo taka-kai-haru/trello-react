@@ -34,6 +34,16 @@ export const AddCard: FC<Props> = (props) => {
     setIsEdit(true);
   };
 
+  const handleBlur = () => {
+    if (inputCard !== "") {
+      addCard(sectionId, inputCard);
+      setInputCard("");
+      setIsEdit(false);
+    } else {
+      setIsEdit(false);
+    }
+  };
+
   return (
     <>
       {isEdit ? (
@@ -46,6 +56,7 @@ export const AddCard: FC<Props> = (props) => {
             variant="filled"
             value={inputCard}
             onChange={(e) => setInputCard(e.target.value)}
+            onBlur={handleBlur}
             autoFocus
             autoComplete="off"
             InputProps={{
@@ -53,8 +64,8 @@ export const AddCard: FC<Props> = (props) => {
                 background: "transparent",
                 borderColor: "transparent",
                 color: "#e4e4e4",
-                paddingTop: 0,
-                paddingBottom: 0,
+                padding: "1px 0 4px",
+                // paddingBottom: 0,
                 width: "264px",
               },
               disableUnderline: true,
@@ -92,9 +103,8 @@ const addCardStyle = css`
   padding: 0;
   //background: rgb(145, 137, 145);
   //background: linear-gradient(126deg, rgb(79, 73, 79) 0%, rgb(68, 64, 69) 96%);
-  margin: 0 6px 6px 6px;
+  margin: 10px 6px 0 6px;
   border-radius: 10px;
-  margin-top: 10px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -133,9 +143,9 @@ const theme = createTheme({
 });
 
 const cardStyle = css`
-  padding: 16px 18px 16px 18px;
+  padding: 10px 15px 10px 15px;
   background: rgb(145, 137, 145);
   background: linear-gradient(126deg, rgb(79, 73, 79) 0%, rgb(68, 64, 69) 96%);
-  border-radius: 8px;
-  margin: 5px 12px 6px 12px;
+  border-radius: 4px;
+  margin: 5px 12px 0 12px;
 `;

@@ -18,6 +18,8 @@ import { AccountCircle, Camera, Email, Send } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { updateUserProfile } from "../features/userSlice";
 import { IconButton, Modal } from "@mui/material";
+// @ts-ignore
+import backGroundImage from "../images/auth/auth.png";
 
 const getModalStyle = () => {
   const top = 50;
@@ -153,8 +155,8 @@ export const Auth: FC = () => {
           sm={4}
           md={7}
           sx={{
-            backgroundImage:
-              "url(https://plus.unsplash.com/premium_photo-1669863282929-d738752329a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80)",
+            // backgroundImage: ".../images/auth/auth.png",
+            backgroundImage: `url(${backGroundImage})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"

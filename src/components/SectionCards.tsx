@@ -20,9 +20,9 @@ import { CardEdit } from "./CardEdit";
 interface Card {
   cardId: string;
   title: string;
-  limitDateTime: string;
+  limitDate: string;
   labelColor: string;
-  progress: string;
+  progress: number;
   memo: string;
 }
 
@@ -40,11 +40,12 @@ export const SectionCards: FC = () => {
   const [edtCardData, setEditCardData] = useState({
     cardId: "",
     title: "",
-    limitDateTime: "",
+    limitDate: "",
     labelColor: "",
-    progress: "",
+    progress: 0,
     memo: "",
   });
+  const [addSectionEdit, setAddSectionEdit] = useState(false);
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result; // source: 移動元の情報, destination: 移動先の情報
 
@@ -207,9 +208,9 @@ export const SectionCards: FC = () => {
     const newCard = {
       cardId: uuid(),
       title: title,
-      limitDateTime: "",
+      limitDate: "",
       labelColor: "",
-      progress: "",
+      progress: 0,
       memo: "",
     };
     const newData = data.map((section) => {
@@ -227,9 +228,9 @@ export const SectionCards: FC = () => {
     sectionId: string,
     cardId: string,
     title: string,
-    limitDateTime: string,
+    limitDate: string,
     labelColor: string,
-    progress: string,
+    progress: number,
     memo: string,
   ) => {
     const newData = data.map((section) => {
@@ -239,7 +240,7 @@ export const SectionCards: FC = () => {
             return {
               ...card,
               title: title,
-              limitDateTime: limitDateTime,
+              limitDate: limitDate,
               labelColor: labelColor,
               progress: progress,
               memo: memo,
@@ -357,7 +358,7 @@ export const SectionCards: FC = () => {
                                             openEditModalFunc(section.id, card)
                                           }
                                         >
-                                          <Card>{card.title}</Card>
+                                          <Card card={card} />
                                         </div>
                                       </div>
                                     )}
@@ -370,12 +371,11 @@ export const SectionCards: FC = () => {
                           </div>
                         )}
                       </Droppable>
-
-                      {provided.placeholder}
                     </div>
                   )}
                 </Draggable>
               ))}
+              {provided.placeholder}
               <AddSection
                 addSection={addSection}
                 columnDropping={columnDropping}

@@ -17,18 +17,18 @@ type Props = {
 
 export const AddSection: FC<Props> = (props) => {
   const { style, columnDropping, addSection } = props;
-  const [isEdit, setIsEdit] = useState(false);
   const [inputTitle, setInputTitle] = useState("");
+  const [addSectionEdit, setAddSectionEdit] = useState(false);
 
   const handleClick = () => {
-    setIsEdit(true);
+    setAddSectionEdit(true);
   };
 
   const handleSubmit = () => {
     if (inputTitle !== "") {
       addSection(inputTitle);
       setInputTitle("");
-      setIsEdit(false);
+      setAddSectionEdit(false);
     }
   };
 
@@ -36,19 +36,19 @@ export const AddSection: FC<Props> = (props) => {
     if (inputTitle !== "") {
       addSection(inputTitle);
       setInputTitle("");
-      setIsEdit(false);
+      setAddSectionEdit(false);
     }
   };
 
   const closeIconHandleClick = () => {
     setInputTitle("");
-    setIsEdit(false);
+    setAddSectionEdit(false);
   };
 
   return (
     <div css={columnDropping ? droppingAddSectionStyle : addSectionStyle}>
-      <div css={isEdit ? style : generalAddSectionStyle}>
-        {isEdit ? (
+      <div css={addSectionEdit ? style : generalAddSectionStyle}>
+        {addSectionEdit ? (
           <div css={inputAreaStyle}>
             <form onSubmit={handleSubmit}>
               <WhiteTextField

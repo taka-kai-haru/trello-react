@@ -45,18 +45,18 @@ type Props = {
     sectionId: string,
     cardId: string,
     title: string,
-    limitDateTime: string,
+    limitDate: string,
     labelColor: string,
-    progress: string,
+    progress: number,
     memo: string,
   ) => void;
   sectionId: string;
   card: {
     cardId: string;
     title: string;
-    limitDateTime: string;
+    limitDate: string;
     labelColor: string;
-    progress: string;
+    progress: number;
     memo: string;
   };
   deleteCard: (sectionId: string, cardId: string) => void;
@@ -104,13 +104,13 @@ export const CardEdit: FC<Props> = (props) => {
 
   useEffect(() => {
     setInputTitle(card.title);
-    if (card.limitDateTime === "") {
+    if (card.limitDate === "") {
       setLimitDate(null);
     } else {
-      setLimitDate(new Date(card.limitDateTime));
+      setLimitDate(new Date(card.limitDate));
     }
     setLabelColor(card.labelColor);
-    setProgress(parseInt(card.progress));
+    setProgress(card.progress);
     setMemo(card.memo);
   }, [card]);
 
@@ -152,7 +152,7 @@ export const CardEdit: FC<Props> = (props) => {
       inputTitle,
       limitDate?.toLocaleString() || "",
       labelColor,
-      progress.toString(),
+      progress,
       memo,
     );
     setOpenEditModal(false);
