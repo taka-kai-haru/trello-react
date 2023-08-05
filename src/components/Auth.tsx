@@ -1,7 +1,6 @@
-import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-
+import { FC, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,35 +11,19 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { FC, useState } from "react";
-import { auth, provider, storage } from "../firebase";
-import { AccountCircle, Camera, Email, Send } from "@mui/icons-material";
+import { AccountCircle, Email, Send } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { updateUserProfile } from "../features/userSlice";
 import { IconButton, Modal } from "@mui/material";
-// @ts-ignore
-import backGroundImage from "../images/auth/auth.png";
 
-const getModalStyle = () => {
-  const top = 50;
-  const left = 50;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%`,
-  };
-};
-
-const defaultTheme = createTheme();
+import { auth, provider, storage } from "../firebase";
+import { updateUserProfile } from "../features/userSlice";
+import backGroundImage from "../images/auth/auth.jpg";
+import GoogleIcon from "../images/icons/google.svg";
+import XIcon from "../images/icons/x.svg";
 
 export const Auth: FC = () => {
-  // const classes = useStyles();
   const dispatch = useDispatch();
-  // Google認証
-  const signInGoogle = async () => {
-    await auth.signInWithPopup(provider).catch((error) => alert(error.message));
-  };
+
   // Email入力
   const [email, setEmail] = useState("");
   // パスワード入力
@@ -55,6 +38,11 @@ export const Auth: FC = () => {
   const [opnModal, setOpnModal] = useState(false);
   // リセット用Email入力
   const [resetEmail, setResetEmail] = useState("");
+
+  // Google認証
+  const signInGoogle = async () => {
+    await auth.signInWithPopup(provider).catch((error) => alert(error.message));
+  };
 
   // Emailパスワードリセット、Email送信
   const sendResetEmail = async () => {
@@ -147,7 +135,12 @@ export const Auth: FC = () => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid
+        container
+        component="main"
+        sx={{ height: "100vh" }}
+        css={outerGridStyle}
+      >
         <CssBaseline />
         <Grid
           item
@@ -155,9 +148,9 @@ export const Auth: FC = () => {
           sm={4}
           md={7}
           sx={{
-            // backgroundImage: ".../images/auth/auth.png",
             backgroundImage: `url(${backGroundImage})`,
             backgroundRepeat: "no-repeat",
+            opacity: 0.4,
             backgroundColor: (t) =>
               t.palette.mode === "light"
                 ? t.palette.grey[50]
@@ -176,11 +169,11 @@ export const Auth: FC = () => {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              {isLogin ? "Login" : "Register"}
+              {isLogin ? "ログイン" : "ユーザー登録"}
             </Typography>
             <Box
               component="form"
@@ -196,7 +189,7 @@ export const Auth: FC = () => {
                     required
                     fullWidth
                     id="username"
-                    label="Username"
+                    label="ユーザー名"
                     name="username"
                     autoComplete="username"
                     autoFocus
@@ -228,7 +221,7 @@ export const Auth: FC = () => {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="メールアドレス"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -240,7 +233,7 @@ export const Auth: FC = () => {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="パスワード(6文字以上)"
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -260,12 +253,12 @@ export const Auth: FC = () => {
                 startIcon={<Email />}
                 onClick={emailLoginOnClick}
               >
-                {isLogin ? "Login" : "Register"}
+                {isLogin ? "ログイン" : "登録"}
               </Button>
               <Grid container>
                 <Grid item xs>
                   <span css={loginReset} onClick={() => setOpnModal(true)}>
-                    Forgot password?
+                    パスワードを忘れた場合
                   </span>
                 </Grid>
                 <Grid item>
@@ -273,7 +266,7 @@ export const Auth: FC = () => {
                     css={loginToggleMode}
                     onClick={() => setIsLogin(!isLogin)}
                   >
-                    {isLogin ? "Create new account ?" : "Back to login"}
+                    {isLogin ? "アカウント作成" : "ログインへ戻る"}
                   </span>
                 </Grid>
               </Grid>
@@ -281,11 +274,20 @@ export const Auth: FC = () => {
               <Button
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 6, mb: 1 }}
                 onClick={signInGoogle}
-                startIcon={<Camera />}
+                startIcon={<GoogleIcon />}
               >
-                SignIn with Google
+                Googleでサインイン
+              </Button>
+              <Button
+                fullWidth
+                variant="contained"
+                sx={{ mt: 1, mb: 2 }}
+                onClick={signInGoogle}
+                startIcon={<XIcon />}
+              >
+                Xでサインイン
               </Button>
             </Box>
 
@@ -297,8 +299,9 @@ export const Auth: FC = () => {
                     variant="standard"
                     type="email"
                     name="email"
-                    label="Reset Email"
+                    label="メールアドレス"
                     value={resetEmail}
+                    sx={{ width: "70%" }}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setResetEmail(e.target.value);
                     }}
@@ -316,15 +319,32 @@ export const Auth: FC = () => {
   );
 };
 
+// モーダルのレイアウト
+const getModalStyle = () => {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%`,
+  };
+};
+
 //css
+const outerGridStyle = css`
+  background-color: #151212;
+`;
 
 const loginToggleMode = css`
   cursor: pointer;
-  color: #0000ff;
 `;
 
 const loginModel = css`
   text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 `;
 
 const loginReset = css`
@@ -352,10 +372,36 @@ const loginModelStyle = css`
   width: 400px;
   height: 200px;
   border-radius: 10px;
-  background-color: white;
+  background-color: #262222;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
+const defaultTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          color: "#131213", // ボタンのテキスト色を白に設定
+          backgroundColor: "#e4e4e4", // ボタンにカーソルを合わせた時の背景色を白に設定
+          textTransform: "none", // ボタンのテキストを大文字にしない
+          "&:hover": {
+            backgroundColor: "white", // ボタンにカーソルを合わせた時の背景色を白に設定
+          },
+          "&:focus": {
+            backgroundColor: "white", // ボタンにカーソルを合わせた時の背景色を白に設定
+          },
+        },
+      },
+    },
+  },
+  typography: {
+    fontFamily: ["Kosugi"].join(","),
+  },
+});

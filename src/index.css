@@ -1,32 +1,17 @@
 * {
   padding: 0;
   margin: 0;
-  /*box-sizing: border-box;*/
 }
 
 body {
-  /*background: rgb(61, 93, 189);*/
-  /*background: linear-gradient(*/
-  /*        126deg,*/
-  /*        rgba(61, 93, 189, 1) 0%,*/
-  /*        rgba(33, 63, 107, 1) 96%*/
-  /*);*/
-  /*height: 100vh;*/
   margin: 0;
   padding: 0;
   color: #e4e4e4;
   line-height: 1.5;
-  background-image: url("./images/main/main.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
   font-family: "Kosugi";
   background-color: #1f1d1f;
 }
 
-/*body{*/
-/*  */
-/*}*/
 
 ::-webkit-scrollbar{
   width: 8px;

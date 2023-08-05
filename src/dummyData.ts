@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 const dummyData = [
   {
     id: uuid(),
-    title: "📝今からやる事",
+    title: "未着手",
     cards: [
       {
         cardId: uuid(),
@@ -33,7 +33,7 @@ const dummyData = [
   },
   {
     id: uuid(),
-    title: "🚀今後やること",
+    title: "実施中",
     cards: [
       {
         cardId: uuid(),
@@ -45,7 +45,7 @@ const dummyData = [
       },
       {
         cardId: uuid(),
-        title: "転職活動",
+        title: "コーチング",
         limitDate: "",
         labelColor: "",
         progress: 100,
@@ -55,7 +55,7 @@ const dummyData = [
   },
   {
     id: uuid(),
-    title: "🌳終わったこと",
+    title: "完了",
     cards: [
       {
         cardId: uuid(),
