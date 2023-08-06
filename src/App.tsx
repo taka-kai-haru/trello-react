@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Main } from "./components/Main";
 import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
-import { Auth } from "./components/Auth";
+import { Auth } from "./components/auth/Auth";
 import { Loading } from "./components/Loading";
 
 const App: FC = () => {

@@ -1,0 +1,86 @@
+import { FC } from "react";
+
+export const AuthErrorMessage: FC = (errorCode: any): string | any => {
+  switch (errorCode) {
+    case "auth/account-exists-with-different-credential":
+      return "既に登録済みのメールアドレスです。";
+    case "auth/popup-closed-by-user":
+      return "ログインをキャンセルしました。";
+    case "auth/cancelled-popup-request":
+      return "ログインをキャンセルしました。";
+    case "auth/popup-blocked":
+      return "ポップアップがブロックされました。";
+    case "auth/operation-not-supported-in-this-environment":
+      return "この環境ではサポートされていません。";
+    case "auth/auth-domain-config-required":
+      return "ドメイン構成が必要です。";
+    case "auth/operation-not-allowed":
+      return "この操作は許可されていません。";
+    case "auth/unauthorized-domain":
+      return "ドメインが許可されていません。";
+    case "auth/invalid-user-token":
+      return "ユーザートークンが無効です。";
+    case "auth/user-token-expired":
+      return "ユーザートークンが期限切れです。";
+    case "auth/invalid-credential":
+      return "資格情報が無効です。";
+    case "auth/invalid-verification-code":
+      return "検証コードが無効です。";
+    case "auth/invalid-verification-id":
+      return "検証IDが無効です。";
+    case "auth/custom-token-mismatch":
+      return "カスタムトークンが一致しません。";
+    case "auth/invalid-custom-token":
+      return "カスタムトークンが無効です。";
+    case "auth/captcha-check-failed":
+      return "キャプチャチェックに失敗しました。";
+    case "auth/invalid-phone-number":
+      return "電話番号が無効です。";
+    case "auth/missing-phone-number":
+      return "電話番号がありません。";
+    case "auth/quota-exceeded":
+      return "クォータが超過しました。";
+    case "auth/network-request-failed":
+      return "ネットワークエラーです。";
+    case "auth/too-many-requests":
+      return "リクエストが多すぎます。";
+    case "auth/user-disabled":
+      return "ユーザーが無効です。";
+    case "auth/web-storage-unsupported":
+      return "Webストレージがサポートされていません。";
+    case "auth/invalid-email":
+      return "メールアドレスが無効です。";
+    case "auth/user-not-found":
+      return "ユーザーが見つかりません。";
+    case "auth/wrong-password":
+      return "パスワードが間違っています。";
+    case "auth/weak-password":
+      return "パスワードが弱すぎます。";
+    case "auth/email-already-in-use":
+      return "メールアドレスが既に使用されています。";
+    case "auth/missing-android-pkg-name":
+      return "Androidパッケージ名がありません。";
+    case "auth/missing-continue-uri":
+      return "続行URIがありません。";
+    case "auth/missing-ios-bundle-id":
+      return "iOSバンドルIDがありません。";
+    case "auth/invalid-continue-uri":
+      return "続行URIが無効です。";
+    case "auth/unauthorized-continue-uri":
+      return "続行URIが許可されていません。";
+    case "auth/invalid-dynamic-link-domain":
+      return "動的リンクドメインが無効です。";
+    case "auth/argument-error":
+      return "引数エラーです。";
+    case "auth/invalid-persistence-type":
+      return "永続性タイプが無効です。";
+    case "auth/unsupported-persistence-type":
+      return "永続性タイプがサポートされていません。";
+    case "auth/credential-already-in-use":
+      return "資格情報が既に使用されています。";
+    case "auth/requires-recent-login":
+      return "最近のログインが必要です。";
+    default:
+      return errorCode.message;
+  }
+};

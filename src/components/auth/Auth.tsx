@@ -15,14 +15,15 @@ import { AccountCircle, Email, Send } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { IconButton, Modal } from "@mui/material";
 
-import { auth, googleProvider, storage, xProvider } from "../firebase";
-import { updateUserProfile } from "../features/userSlice";
-import backGroundImage from "../images/auth/auth.jpg";
+import { auth, googleProvider, storage, xProvider } from "../../firebase";
+import { updateUserProfile } from "../../features/userSlice";
+import backGroundImage from "../../images/auth/auth.jpg";
 
 // @ts-ignore
-import { ReactComponent as GoogleIcon } from "../images/icons/google.svg";
+import { ReactComponent as GoogleIcon } from "../../images/icons/google.svg";
 // @ts-ignore
-import { ReactComponent as XIcon } from "../images/icons/x.svg";
+import { ReactComponent as XIcon } from "../../images/icons/x.svg";
+import { AuthErrorMessage } from "./AuthErrorMessage";
 
 export const Auth: FC = () => {
   const dispatch = useDispatch();
@@ -46,13 +47,13 @@ export const Auth: FC = () => {
   const signInGoogle = async () => {
     await auth
       .signInWithPopup(googleProvider)
-      .catch((error) => alert(error.message));
+      .catch((error) => alert(AuthErrorMessage(error.code)));
   };
 
   const signInX = async () => {
     await auth
       .signInWithPopup(xProvider)
-      .catch((error) => alert(error.message));
+      .catch((error) => alert(AuthErrorMessage(error.code)));
   };
 
   // Emailパスワードリセット、Email送信
