@@ -15,11 +15,14 @@ import { AccountCircle, Email, Send } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { IconButton, Modal } from "@mui/material";
 
-import { auth, provider, storage } from "../firebase";
+import { auth, googleProvider, storage, xProvider } from "../firebase";
 import { updateUserProfile } from "../features/userSlice";
 import backGroundImage from "../images/auth/auth.jpg";
-import GoogleIcon from "../images/icons/google.svg";
-import XIcon from "../images/icons/x.svg";
+
+// @ts-ignore
+import { ReactComponent as GoogleIcon } from "../images/icons/google.svg";
+// @ts-ignore
+import { ReactComponent as XIcon } from "../images/icons/x.svg";
 
 export const Auth: FC = () => {
   const dispatch = useDispatch();
@@ -41,7 +44,15 @@ export const Auth: FC = () => {
 
   // Google認証
   const signInGoogle = async () => {
-    await auth.signInWithPopup(provider).catch((error) => alert(error.message));
+    await auth
+      .signInWithPopup(googleProvider)
+      .catch((error) => alert(error.message));
+  };
+
+  const signInX = async () => {
+    await auth
+      .signInWithPopup(xProvider)
+      .catch((error) => alert(error.message));
   };
 
   // Emailパスワードリセット、Email送信
@@ -284,7 +295,7 @@ export const Auth: FC = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 1, mb: 2 }}
-                onClick={signInGoogle}
+                onClick={signInX}
                 startIcon={<XIcon />}
               >
                 Xでサインイン
