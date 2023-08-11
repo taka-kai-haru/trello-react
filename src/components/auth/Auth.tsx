@@ -24,6 +24,7 @@ import { ReactComponent as GoogleIcon } from "../../images/icons/google.svg";
 // @ts-ignore
 import { ReactComponent as XIcon } from "../../images/icons/x.svg";
 import { AuthErrorMessage } from "./AuthErrorMessage";
+import { ButtonType, CommonDialog } from "../dialog/CommonDialog";
 
 export const Auth: FC = () => {
   const dispatch = useDispatch();
@@ -42,18 +43,34 @@ export const Auth: FC = () => {
   const [opnModal, setOpnModal] = useState(false);
   // リセット用Email入力
   const [resetEmail, setResetEmail] = useState("");
+  // エラーメッセージ
+  const [dialogMessage, setDialogMessage] = useState("");
+  // ダイアログの表示
+  const [openDialog, setOpenDialog] = useState(false);
+  // ダイアログのタイトル
+  const [dialogTitle, setDialogTitle] = useState("");
 
   // Google認証
   const signInGoogle = async () => {
-    await auth
-      .signInWithPopup(googleProvider)
-      .catch((error) => alert(AuthErrorMessage(error.code)));
+    await auth.signInWithPopup(googleProvider).catch((error) => {
+      const errorMessage = AuthErrorMessage(error.code);
+      errorMessage
+        ? setDialogMessage(errorMessage)
+        : setDialogMessage(error.message);
+      setDialogTitle("エラー");
+      setOpenDialog(true);
+    });
   };
 
   const signInX = async () => {
-    await auth
-      .signInWithPopup(xProvider)
-      .catch((error) => alert(AuthErrorMessage(error.code)));
+    await auth.signInWithPopup(xProvider).catch((error) => {
+      const errorMessage = AuthErrorMessage(error.code);
+      errorMessage
+        ? setDialogMessage(errorMessage)
+        : setDialogMessage(error.message);
+      setDialogTitle("エラー");
+      setOpenDialog(true);
+    });
   };
 
   // Emailパスワードリセット、Email送信
@@ -61,13 +78,21 @@ export const Auth: FC = () => {
     await auth
       .sendPasswordResetEmail(resetEmail)
       .then(() => {
-        alert("メールを送信しました。");
         setResetEmail("");
         setOpnModal(false);
+        setDialogTitle("確認");
+        setDialogMessage("メールを送信しました。");
+        setOpenDialog(true);
       })
       .catch((error) => {
-        alert(error.message);
+        // alert(error.message);
         setResetEmail("");
+        const errorMessage = AuthErrorMessage(error.code);
+        errorMessage
+          ? setDialogMessage(errorMessage)
+          : setDialogMessage(error.message);
+        setDialogTitle("エラー");
+        setOpenDialog(true);
       });
   };
 
@@ -81,7 +106,14 @@ export const Auth: FC = () => {
 
   // メールアドレスとパスワードでのログイン
   const signInEmail = async () => {
-    await auth.signInWithEmailAndPassword(email, password);
+    await auth.signInWithEmailAndPassword(email, password).catch((error) => {
+      const errorMessage = AuthErrorMessage(error.code);
+      errorMessage
+        ? setDialogMessage(errorMessage)
+        : setDialogMessage(error.message);
+      setDialogTitle("エラー");
+      setOpenDialog(true);
+    });
   };
 
   // メールアドレスとパスワードでの新規登録
@@ -124,13 +156,24 @@ export const Auth: FC = () => {
       try {
         await signInEmail();
       } catch (error: any) {
-        alert(error.message);
+        const errorMessage = AuthErrorMessage(error.code);
+        errorMessage
+          ? setDialogMessage(errorMessage)
+          : setDialogMessage(error.message);
+        setDialogTitle("エラー");
+        setOpenDialog(true);
       }
     } else {
       try {
         await signUpEmail();
       } catch (error: any) {
-        alert(error.message);
+        const errorMessage = AuthErrorMessage(error.code);
+        errorMessage
+          ? setDialogMessage(errorMessage)
+          : setDialogMessage(error.message);
+        setDialogTitle("エラー");
+
+        setOpenDialog(true);
       }
     }
   };
@@ -327,6 +370,14 @@ export const Auth: FC = () => {
           </Box>
         </Grid>
       </Grid>
+      <CommonDialog
+        title={dialogTitle}
+        message={dialogMessage}
+        onAccept={() => setOpenDialog(false)}
+        onClose={() => setOpenDialog(false)}
+        open={openDialog}
+        buttonType={ButtonType.OkOnly}
+      />
     </ThemeProvider>
   );
 };

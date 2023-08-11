@@ -1,6 +1,4 @@
-import { FC } from "react";
-
-export const AuthErrorMessage: FC = (errorCode: any): string | any => {
+export const AuthErrorMessage = (errorCode: string): string => {
   switch (errorCode) {
     case "auth/account-exists-with-different-credential":
       return "既に登録済みのメールアドレスです。";
@@ -81,6 +79,6 @@ export const AuthErrorMessage: FC = (errorCode: any): string | any => {
     case "auth/requires-recent-login":
       return "最近のログインが必要です。";
     default:
-      return errorCode.message;
+      return errorCode;
   }
 };
