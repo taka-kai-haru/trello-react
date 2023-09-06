@@ -85,7 +85,6 @@ export const Auth: FC = () => {
         setOpenDialog(true);
       })
       .catch((error) => {
-        // alert(error.message);
         setResetEmail("");
         const errorMessage = AuthErrorMessage(error.code);
         errorMessage

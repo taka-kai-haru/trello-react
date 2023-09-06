@@ -155,8 +155,9 @@ export const SectionCards: FC = () => {
     } catch (error) {
       console.error("データ更新時にエラーが発生しました。 Firebase:", error);
     }
-  }; // Firestoreからデータを取得
+  };
 
+  // Firestoreからデータを取得
   const selectFireStore = useCallback(async (): Promise<void> => {
     try {
       const querySnapshot = await db
@@ -199,9 +200,22 @@ export const SectionCards: FC = () => {
   };
 
   // dataのsectionを削除
-  const deleteSection = (id: string) => {
+  const deleteSection = async (id: string) => {
     const newData = data.filter((section) => section.id !== id);
     setData(newData);
+    // useEffectでは、最新のsection（newData）でループしているため、削除されない。(削除以外のsectionが更新される)
+    // その為、削除処理はuseEffectの外で行う。
+    const docRef = db
+      .collection("users")
+      .doc(auth.currentUser?.uid)
+      .collection("contents")
+      .doc(id);
+
+    const docSnapshot = await docRef.get();
+    if (docSnapshot.exists) {
+      // ドキュメントが存在する場合は削除
+      await docRef.delete();
+    }
   };
 
   // dataのcardを追加
