@@ -1,9 +1,9 @@
 # trello-react
 
 ## 📱 Screen Shots
-![torello_login](https://github.com/taka-kai-haru/trello-react/assets/67408336/8c0ae87b-aa32-4022-9e28-780452d61db5)
-![torello](https://github.com/taka-kai-haru/trello-react/assets/67408336/3ab6dc95-d21c-42c3-9524-5792912a4959)
-![torello2](https://github.com/taka-kai-haru/trello-react/assets/67408336/4064b36e-fd5c-4dde-a71c-b0b47059f2b7)
+![torello_login](https://github.com/taka-kai-haru/trello-react/assets/67408336/90eef854-d627-4b68-9b5f-fd83f99c6f6c)
+![torello](https://github.com/taka-kai-haru/trello-react/assets/67408336/752d1f1e-7867-4351-8689-84c4a3b6dbb5)
+![torello2](https://github.com/taka-kai-haru/trello-react/assets/67408336/ee86db00-71c1-4b7a-96d8-4e3c857818d1)
 
 
 ## 🌐 App URL
@@ -40,22 +40,22 @@ none
 - [MUI](https://material-ui.com/)
 - [Emotion](https://emotion.sh/docs/introduction)
   
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/e6869c02-7ac3-4d0f-b11a-ac328c12e838" width="200px" alt="node.js">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/bed83cbf-7ba7-4d24-a26c-4716da97e056" width="200px" alt="react">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/3aae413a-8f32-4f84-84b8-c8e1e12de125" width="200px" alt="redux">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/15255dbc-01b8-436f-aea9-ed548567ef0f)" width="200px" alt="typescript">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/e036cdbd-504d-41e7-b641-55cda1eab092" width="400px" alt="react-beautiful-dnd">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/e5886918-ac0f-4b66-95b0-c8c544cf706d" width="200px" alt="mui">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/c6d24317-9c16-44aa-a577-fd2babbae8cb)" width="200px" alt="emotion">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/246b9fe2-55c1-425c-8942-c395fa5d7f90" width="200px" alt="node.js">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/bfb971df-3c31-481b-87ec-72f7d7343c29" width="200px" alt="react">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/3ce5a9a3-451c-4088-8944-b2631f800739" width="200px" alt="redux">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/7a7a130c-31cd-43e1-8a46-b92280ecf055" width="200px" alt="typescript">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/3c46aafb-75f8-46fe-94a3-b42105fe1997" width="400px" alt="react-beautiful-dnd">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/c14055d7-9e75-44b6-8df5-c3eb3364807d" width="200px" alt="mui">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/50118ec3-aad9-47c9-8358-fc812bcd718f" width="200px" alt="emotion">
 
 ### Backend
 - [Cloud Firestore](https://firebase.google.com/docs/firestore)
 - [Cloud Storage](https://firebase.google.com/docs/storage)
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/d729f4ad-f7fb-4296-b2c2-d26fb1eb0432" width="270px" alt="cloud firestore">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/b3d1b2c5-dd88-4126-a3b9-c93e0eac98da" width="270px" alt="cloud storage">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/641f1dfa-44e5-4251-882a-8d0277b47669" width="270px" alt="firebase hosting">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/691d6e28-8cd1-4f30-a2b3-e3be46686ee3" width="270px" alt="cloud firestore">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/18d66222-da8b-45e6-b70c-488715b40e96" width="270px" alt="cloud storage">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/eafdb9a3-6723-41c0-9a9a-9c2fa6e87acb" width="270px" alt="firebase hosting">
 
 ## 🎫 License
 - MT
