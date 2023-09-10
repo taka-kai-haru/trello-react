@@ -67,6 +67,7 @@ export const AddSection: FC<Props> = (props) => {
                   variant="outlined"
                   size="small"
                   onClick={handleAddButtonClicked}
+                  disabled={!inputTitle}
                 >
                   追加
                 </Button>
@@ -163,6 +164,10 @@ const theme = createTheme({
           },
           "&:focus": {
             borderColor: "white", // ボタンがフォーカスされた時の枠線色を白に設定
+          },
+          "&:disabled": {
+            borderColor: "#8c8b8b", // ボタンが使用できない場合
+            color: "#8c8b8b", //ボタンが使用できない場合
           },
         },
       },

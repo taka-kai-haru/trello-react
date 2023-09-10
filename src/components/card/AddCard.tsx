@@ -82,7 +82,12 @@ export const AddCard: FC<Props> = (props) => {
 
           <div css={cardAddButtonArea}>
             <ThemeProvider theme={theme}>
-              <Button variant="outlined" size="small" onClick={handleAddCard}>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={handleAddCard}
+                disabled={!inputCard}
+              >
                 追加
               </Button>
             </ThemeProvider>
@@ -133,6 +138,10 @@ const theme = createTheme({
           },
           "&:focus": {
             borderColor: "white", // ボタンがフォーカスされた時の枠線色を白に設定
+          },
+          "&:disabled": {
+            borderColor: "#8c8b8b", // ボタンが使用できない場合
+            color: "#8c8b8b", //ボタンが使用できない場合
           },
         },
       },
