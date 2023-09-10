@@ -435,7 +435,7 @@ const whiteTextFieldStyle = css`
 const WhiteTextField = styled(TextField)(whiteTextFieldStyle);
 
 const iconStyle = css`
-  margin: 2px 0 1px 6px;
+  margin: 2px 0 2px 6px;
 `;
 
 const deleteButtonStyle = css`
@@ -451,7 +451,7 @@ const titleStyle = css`
 `;
 
 const titleInputStyle = css`
-  margin-bottom: 1px;
+  margin-bottom: 1.2px;
 `;
 
 const buttonAreaStyle = css`
@@ -461,6 +461,7 @@ const buttonAreaStyle = css`
 
 const subTitleStyle = css`
   font-size: 1.1rem;
+  margin-top: 0.4px;
 `;
 
 const editButtonTheme = createTheme({
