@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# trello-react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📱 Screen Shots
+![torello_login](https://github.com/taka-kai-haru/trello-react/assets/67408336/8c0ae87b-aa32-4022-9e28-780452d61db5)
+![torello](https://github.com/taka-kai-haru/trello-react/assets/67408336/3ab6dc95-d21c-42c3-9524-5792912a4959)
+![torello2](https://github.com/taka-kai-haru/trello-react/assets/67408336/4064b36e-fd5c-4dde-a71c-b0b47059f2b7)
 
-## Available Scripts
 
-In the project directory, you can run:
+## 🌐 App URL
+### **https://trello-react-6202d.web.app/**
 
-### `npm start`
+## 📖 Description
+trelloのようにTodoのカードを作成し、ドラッグ&ドロップで移動させることができるアプリです。
+Todoは、期日、ラベル、進捗率、コメントを設定することができます。
+ユーザごとにTodoが管理されているため、複数ユーザでの利用も可能です。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📝 Features
+none
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 💁‍♂️ Usage
+基本的な使用方法はtrelloと同じです。
 
-### `npm test`
+## 📦 Requirement
+### Browser
+- chrome
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+下記のいづれかが必要です。
+- email
+- google account
+- x account
 
-### `npm run build`
+## 💻 Technology Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
+- [Node.js](https://nodejs.org/ja/)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [React-Beautiful-DND](https://github.com/atlassian/react-beautiful-dnd)
+- [MUI](https://material-ui.com/)
+- [Emotion](https://emotion.sh/docs/introduction)
+  
+![Node.js](https://github.com/taka-kai-haru/trello-react/assets/67408336/e6869c02-7ac3-4d0f-b11a-ac328c12e838)
+![React](https://github.com/taka-kai-haru/trello-react/assets/67408336/bed83cbf-7ba7-4d24-a26c-4716da97e056)
+![redux](https://github.com/taka-kai-haru/trello-react/assets/67408336/3aae413a-8f32-4f84-84b8-c8e1e12de125)
+![typescript](https://github.com/taka-kai-haru/trello-react/assets/67408336/15255dbc-01b8-436f-aea9-ed548567ef0f)
+![reactbeautifuldnd](https://github.com/taka-kai-haru/trello-react/assets/67408336/e036cdbd-504d-41e7-b641-55cda1eab092)
+![muipng](https://github.com/taka-kai-haru/trello-react/assets/67408336/e5886918-ac0f-4b66-95b0-c8c544cf706d)
+![emotion](https://github.com/taka-kai-haru/trello-react/assets/67408336/c6d24317-9c16-44aa-a577-fd2babbae8cb)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend
+- [Cloud Firestore](https://firebase.google.com/docs/firestore)
+- [Cloud Storage](https://firebase.google.com/docs/storage)
+- [Firebase Hosting](https://firebase.google.com/docs/hosting)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Cloud Firestore](https://github.com/taka-kai-haru/trello-react/assets/67408336/d729f4ad-f7fb-4296-b2c2-d26fb1eb0432)
+![Cloud Storage](https://github.com/taka-kai-haru/trello-react/assets/67408336/b3d1b2c5-dd88-4126-a3b9-c93e0eac98da)
+![Firebase Hosting](https://github.com/taka-kai-haru/trello-react/assets/67408336/641f1dfa-44e5-4251-882a-8d0277b47669)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🎫 License
+- MT
