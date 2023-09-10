@@ -44,7 +44,7 @@ none
 <img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/bed83cbf-7ba7-4d24-a26c-4716da97e056" width="200px" alt="react">
 <img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/3aae413a-8f32-4f84-84b8-c8e1e12de125" width="200px" alt="redux">
 <img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/15255dbc-01b8-436f-aea9-ed548567ef0f)" width="200px" alt="typescript">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/e036cdbd-504d-41e7-b641-55cda1eab092" width="200px" alt="react-beautiful-dnd">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/e036cdbd-504d-41e7-b641-55cda1eab092" width="400px" alt="react-beautiful-dnd">
 <img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/e5886918-ac0f-4b66-95b0-c8c544cf706d" width="200px" alt="mui">
 <img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/c6d24317-9c16-44aa-a577-fd2babbae8cb)" width="200px" alt="emotion">
 
@@ -53,9 +53,9 @@ none
 - [Cloud Storage](https://firebase.google.com/docs/storage)
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/d729f4ad-f7fb-4296-b2c2-d26fb1eb0432" width="200px" alt="cloud firestore">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/b3d1b2c5-dd88-4126-a3b9-c93e0eac98da" width="200px" alt="cloud storage">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/641f1dfa-44e5-4251-882a-8d0277b47669" width="200px" alt="firebase hosting">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/d729f4ad-f7fb-4296-b2c2-d26fb1eb0432" width="300px" alt="cloud firestore">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/b3d1b2c5-dd88-4126-a3b9-c93e0eac98da" width="300px" alt="cloud storage">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/641f1dfa-44e5-4251-882a-8d0277b47669" width="300px" alt="firebase hosting">
 
 ## 🎫 License
 - MT
