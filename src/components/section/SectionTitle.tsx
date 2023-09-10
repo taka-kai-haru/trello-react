@@ -70,9 +70,8 @@ const titleArea = css`
 const sectionTitle = css`
   font-size: 1.2rem;
   font-weight: 700;
-  //margin: 10px 0 20px;
-  margin-top: 1px;
-  padding: 0 3px 0 3px;
+  margin: 0;
+  padding: 5px 5px 5px 5px;
 `;
 
 const whiteInput = css`
@@ -80,8 +79,8 @@ const whiteInput = css`
     font-size: 1.2rem;
     font-weight: 700;
     color: #e4e4e4;
-    padding: 0 3px 0 3px;
-    margin: 0.6px 0;
+    padding: 5px 5px 5px 5px;
+    margin: 0 0 1px 0;
     width: 260px;
   }
 

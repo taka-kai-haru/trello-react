@@ -108,7 +108,7 @@ const generalAddSectionStyle = css`
 `;
 
 const inputAreaStyle = css`
-  margin: 0 15px 5px 15px;
+  margin: 0 15px 0 15px;
 `;
 
 const addButtonAreaStyle = css`
@@ -137,8 +137,9 @@ const whiteInput = css`
     font-size: 1.2rem;
     font-weight: 700;
     color: #e4e4e4;
-    padding: 0 3px 0 3px;
-    margin: 0.6px 0;
+    padding: 5px 5px 5px 5px;
+    //padding: 0 3px 0 3px;
+    margin: 0;
     width: 260px;
   }
 

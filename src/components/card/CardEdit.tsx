@@ -79,6 +79,14 @@ export const CardEdit: FC<Props> = (props) => {
   const [progress, setProgress] = useState(0);
   const [memo, setMemo] = useState("");
   const [labelColor, setLabelColor] = useState("");
+  // 変更前の値を保持するstate
+  const [beforeTitle, setBeforeTitle] = useState("");
+  const [beforeLimitDate, setBeforeLimitDate] = useState<Date | null>(
+    new Date(),
+  );
+  const [beforeLabelColor, setBeforeLabelColor] = useState("");
+  const [beforeProgress, setBeforeProgress] = useState(0);
+  const [beforeMemo, setBeforeMemo] = useState("");
   // ダイアログ用のstate
   const [digOpen, setDigOpen] = useState(false);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -91,15 +99,26 @@ export const CardEdit: FC<Props> = (props) => {
   };
 
   useEffect(() => {
+    // タイトル
     setInputTitle(card.title);
+    setBeforeTitle(card.title); //変更前の値をセット
+    // 期限
     if (card.limitDate === "") {
       setLimitDate(null);
+      setBeforeLimitDate(null); //変更前の値をセット
     } else {
       setLimitDate(new Date(card.limitDate));
+      setBeforeLimitDate(new Date(card.limitDate)); //変更前の値をセット
     }
+    // ラベル
     setLabelColor(card.labelColor);
+    setBeforeLabelColor(card.labelColor); //変更前の値をセット
+    // 状況
     setProgress(card.progress);
+    setBeforeProgress(card.progress); //変更前の値をセット
+    // メモ
     setMemo(card.memo);
+    setBeforeMemo(card.memo); //変更前の値をセット
   }, [card]);
 
   const handleEditButtonClicked = () => {
@@ -125,7 +144,30 @@ export const CardEdit: FC<Props> = (props) => {
     reason: "backdropClick",
   ) => {
     if (reason === "backdropClick") return;
+    // 変更前の値をセット
+    setInputTitle(beforeTitle);
+    setLimitDate(beforeLimitDate);
+    setLabelColor(beforeLabelColor);
+    setProgress(beforeProgress);
+    setMemo(beforeMemo);
     setOpenEditModal(false);
+  };
+
+  const handleCloseButtonClicked = () => {
+    // 変更前の値をセット
+    setInputTitle(beforeTitle);
+    setLimitDate(beforeLimitDate);
+    setLabelColor(beforeLabelColor);
+    setProgress(beforeProgress);
+    setMemo(beforeMemo);
+    setOpenEditModal(false);
+  };
+
+  const handleInputTitleBlur = () => {
+    if (inputTitle === "") {
+      setInputTitle(beforeTitle);
+    }
+    setIsTitleEdit(false);
   };
 
   return (
@@ -158,7 +200,7 @@ export const CardEdit: FC<Props> = (props) => {
                       inputProps={{
                         maxLength: 25,
                       }}
-                      onBlur={() => setIsTitleEdit(false)}
+                      onBlur={handleInputTitleBlur}
                     />
                   </div>
                 ) : (
@@ -169,7 +211,7 @@ export const CardEdit: FC<Props> = (props) => {
               </Grid>
               <Grid xs={1}>
                 <div
-                  onClick={() => setOpenEditModal(false)}
+                  onClick={() => handleCloseButtonClicked()}
                   css={deleteButtonStyle}
                 >
                   <CloseIcon />
@@ -317,6 +359,7 @@ export const CardEdit: FC<Props> = (props) => {
                     <Button
                       variant="outlined"
                       onClick={handleEditButtonClicked}
+                      disabled={!inputTitle}
                     >
                       更新
                     </Button>
@@ -378,8 +421,8 @@ const whiteTextFieldStyle = css`
     font-size: 1.2rem;
     font-weight: 700;
     color: #e4e4e4;
-    padding: 0 3px 0 3px;
-    margin: 0.6px 0 0 0;
+    padding: 5px 3px 5px 3px;
+    margin: 0;
     width: 500px;
   }
 
@@ -392,17 +435,19 @@ const whiteTextFieldStyle = css`
 const WhiteTextField = styled(TextField)(whiteTextFieldStyle);
 
 const iconStyle = css`
-  margin: 2px 0 0 6px;
+  margin: 2px 0 1px 6px;
 `;
 
 const deleteButtonStyle = css`
   cursor: pointer;
+  text-align: center;
 `;
 
 const titleStyle = css`
   font-size: 1.2rem;
   font-weight: 700;
-  padding: 0 3px 0 3px;
+  padding: 5px 3px 5px 3px;
+  margin: 0;
 `;
 
 const titleInputStyle = css`
@@ -432,6 +477,10 @@ const editButtonTheme = createTheme({
           "&:focus": {
             borderColor: "white", // ボタンがフォーカスされた時の枠線色を白に設定
           },
+          "&:disabled": {
+            borderColor: "#8c8b8b", // ボタンが使用できない場合
+            color: "#8c8b8b", //ボタンが使用できない場合
+          },
         },
       },
     },
@@ -445,6 +494,7 @@ const deleteButtonTheme = createTheme({
         contained: {
           color: "#e4e4e4", // ボタンのテキスト色を白に設定
           backgroundColor: "#cb3d3d",
+          width: "90px",
           "&:hover": {
             backgroundColor: "#c72a2a", // ボタンにカーソルを合わせた時の枠線色を白に設定
           },
