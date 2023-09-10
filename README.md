@@ -53,9 +53,9 @@ none
 - [Cloud Storage](https://firebase.google.com/docs/storage)
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/d729f4ad-f7fb-4296-b2c2-d26fb1eb0432" width="280px" alt="cloud firestore">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/b3d1b2c5-dd88-4126-a3b9-c93e0eac98da" width="280px" alt="cloud storage">
-<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/641f1dfa-44e5-4251-882a-8d0277b47669" width="280px" alt="firebase hosting">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/d729f4ad-f7fb-4296-b2c2-d26fb1eb0432" width="270px" alt="cloud firestore">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/b3d1b2c5-dd88-4126-a3b9-c93e0eac98da" width="270px" alt="cloud storage">
+<img src="https://github.com/taka-kai-haru/trello-react/assets/67408336/641f1dfa-44e5-4251-882a-8d0277b47669" width="270px" alt="firebase hosting">
 
 ## 🎫 License
 - MT
