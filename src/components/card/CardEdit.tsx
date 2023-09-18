@@ -164,10 +164,9 @@ export const CardEdit: FC<Props> = (props) => {
   };
 
   const handleInputTitleBlur = () => {
-    if (inputTitle === "") {
-      setInputTitle(beforeTitle);
+    if (inputTitle !== "") {
+      setIsTitleEdit(false);
     }
-    setIsTitleEdit(false);
   };
 
   return (
