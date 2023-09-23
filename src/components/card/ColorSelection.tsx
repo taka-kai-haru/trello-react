@@ -70,6 +70,7 @@ const Container = css`
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-top: 0px;
 `;
 
 const ColorPickerBox = (isSelected: boolean) => css`

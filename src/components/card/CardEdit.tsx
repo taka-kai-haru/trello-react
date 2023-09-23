@@ -181,12 +181,12 @@ export const CardEdit: FC<Props> = (props) => {
               alignItems="center"
             >
               {/*タイトル*/}
-              <Grid xs={1}>
+              <Grid xs={1} css={gridStyle}>
                 <div css={iconStyle}>
                   <CreditCardIcon />
                 </div>
               </Grid>
-              <Grid xs={10}>
+              <Grid xs={10} css={gridStyle}>
                 {isTitleEdit ? (
                   <div css={titleInputStyle}>
                     <WhiteTextField
@@ -208,7 +208,7 @@ export const CardEdit: FC<Props> = (props) => {
                   </div>
                 )}
               </Grid>
-              <Grid xs={1}>
+              <Grid xs={1} css={gridStyle}>
                 <div
                   onClick={() => handleCloseButtonClicked()}
                   css={deleteButtonStyle}
@@ -218,19 +218,29 @@ export const CardEdit: FC<Props> = (props) => {
               </Grid>
 
               {/*期限ヘッダ*/}
-              <Grid xs={1}>
+              <Grid xs={1} css={gridStyle}>
                 <div css={iconStyle}>
                   <CalendarMonthIcon />
                 </div>
               </Grid>
-              <Grid xs={10}>
+              <Grid xs={4} css={gridStyle}>
                 <p css={subTitleStyle}>期限</p>
               </Grid>
-              <Grid xs={1}></Grid>
+
+              <Grid xs={1} css={gridStyle}>
+                <div css={iconStyle}>
+                  <PaletteIcon />
+                </div>
+              </Grid>
+              <Grid xs={5} css={gridStyle}>
+                <p css={subTitleStyle}>ラベル</p>
+              </Grid>
+
+              <Grid xs={1} css={gridStyle}></Grid>
 
               {/*期限*/}
-              <Grid xs={1}></Grid>
-              <Grid xs={10}>
+              <Grid xs={1} css={gridStyle}></Grid>
+              <Grid xs={4} css={gridStyle}>
                 <MaterialCssVarsProvider>
                   <CssVarsProvider theme={{ [THEME_ID]: joyTheme }}>
                     <SyncThemeMode />
@@ -255,6 +265,7 @@ export const CardEdit: FC<Props> = (props) => {
                         onChange={changeDateHandler}
                         format="yyyy年M月d日"
                         slotProps={{
+                          textField: { size: "small" },
                           actionBar: {
                             actions: ["clear", "cancel", "today"],
                           },
@@ -264,47 +275,34 @@ export const CardEdit: FC<Props> = (props) => {
                   </CssVarsProvider>
                 </MaterialCssVarsProvider>
               </Grid>
-              <Grid xs={1}></Grid>
 
-              {/*ラベルヘッダ*/}
-              <Grid xs={1}>
-                <div css={iconStyle}>
-                  <PaletteIcon />
-                </div>
-              </Grid>
-              <Grid xs={10}>
-                <p css={subTitleStyle}>ラベル</p>
-              </Grid>
-              <Grid xs={1}></Grid>
-
-              {/*ラベル*/}
-              <Grid xs={1}></Grid>
-              <Grid xs={10}>
+              <Grid xs={1} css={gridStyle}></Grid>
+              <Grid xs={5} css={gridStyle}>
                 <ColorSelection
                   labelColor={labelColor}
                   setLabelColor={setLabelColor}
                 />
               </Grid>
-              <Grid xs={1}></Grid>
+
+              <Grid xs={1} css={gridStyle}></Grid>
 
               {/*状況ヘッダ*/}
-              <Grid xs={1}>
+              <Grid xs={1} css={gridStyle}>
                 <div css={iconStyle}>
                   <TimelineIcon />
                 </div>
               </Grid>
-              <Grid xs={10}>
+              <Grid xs={10} css={gridStyle}>
                 <p css={subTitleStyle}>状況</p>
               </Grid>
-              <Grid xs={1}></Grid>
+              <Grid xs={1} css={gridStyle}></Grid>
 
               {/*状況*/}
-              <Grid xs={1}></Grid>
-              <Grid xs={10}>
+              <Grid xs={1} css={gridStyle}></Grid>
+              <Grid xs={10} css={gridStyle}>
                 <Slider
-                  aria-label="Temperature"
-                  defaultValue={30}
-                  // getAriaValueText={value}
+                  aria-label="状況"
+                  defaultValue={0}
                   valueLabelDisplay="auto"
                   step={10}
                   marks
@@ -312,24 +310,25 @@ export const CardEdit: FC<Props> = (props) => {
                   max={100}
                   value={progress}
                   onChange={(e, value) => setProgress(value as number)}
+                  sx={{ marginLeft: "4px" }}
                 />
               </Grid>
-              <Grid xs={1}></Grid>
+              <Grid xs={1} css={gridStyle}></Grid>
 
               {/*メモヘッダ*/}
-              <Grid xs={1}>
+              <Grid xs={1} css={gridStyle}>
                 <div css={iconStyle}>
                   <ArticleIcon />
                 </div>
               </Grid>
-              <Grid xs={10}>
+              <Grid xs={10} css={gridStyle}>
                 <p css={subTitleStyle}>メモ</p>
               </Grid>
-              <Grid xs={1}></Grid>
+              <Grid xs={1} css={gridStyle}></Grid>
 
               {/*メモ*/}
-              <Grid xs={1}></Grid>
-              <Grid xs={10}>
+              <Grid xs={1} css={gridStyle}></Grid>
+              <Grid xs={10} css={gridStyle}>
                 {/*<WhiteTextMultilineField*/}
                 <MaterialCssVarsProvider>
                   <CssVarsProvider theme={{ [THEME_ID]: joyTheme }}>
@@ -348,7 +347,7 @@ export const CardEdit: FC<Props> = (props) => {
                   </CssVarsProvider>
                 </MaterialCssVarsProvider>
               </Grid>
-              <Grid xs={1}></Grid>
+              <Grid xs={1} css={gridStyle}></Grid>
 
               {/*ボタン*/}
               <Grid xs={2}></Grid>
@@ -408,7 +407,7 @@ const editModelStyle = css`
   outline: none;
   position: absolute;
   width: 700px;
-  height: 650px;
+  height: 500px;
   border-radius: 10px;
   background-color: #262426;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
@@ -433,8 +432,12 @@ const whiteTextFieldStyle = css`
 `;
 const WhiteTextField = styled(TextField)(whiteTextFieldStyle);
 
+const gridStyle = css`
+  padding: 3px 4px 3px 4px;
+`;
+
 const iconStyle = css`
-  margin: 2px 0 2px 6px;
+  margin: 6px 0 2px 6px;
 `;
 
 const deleteButtonStyle = css`
