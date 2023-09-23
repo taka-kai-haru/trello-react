@@ -90,7 +90,7 @@ export const Auth: FC = () => {
         errorMessage
           ? setDialogMessage(errorMessage)
           : setDialogMessage(error.message);
-        setDialogTitle("エラー");
+        setDialogTitle("警告");
         setOpenDialog(true);
       });
   };
