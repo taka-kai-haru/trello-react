@@ -20,6 +20,11 @@ none
 基本的な使用方法はtrelloと同じです。
 
 ## 📦 Requirement
+### Device
+- PC
+
+※スマートフォン等では使用できません。
+
 ### Browser
 - chrome
 
