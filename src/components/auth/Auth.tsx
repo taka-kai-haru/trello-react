@@ -49,27 +49,33 @@ export const Auth: FC = () => {
   const [openDialog, setOpenDialog] = useState(false);
   // ダイアログのタイトル
   const [dialogTitle, setDialogTitle] = useState("");
+  // Google/xログイン処理中
+  const [isLoginProcessing, setIsLoginProcessing] = useState(false);
 
   // Google認証
   const signInGoogle = async () => {
+    setIsLoginProcessing(true);
     await auth.signInWithPopup(googleProvider).catch((error) => {
       const errorMessage = AuthErrorMessage(error.code);
       errorMessage
         ? setDialogMessage(errorMessage)
         : setDialogMessage(error.message);
-      setDialogTitle("エラー");
+      setDialogTitle("警告");
       setOpenDialog(true);
+      setIsLoginProcessing(false);
     });
   };
 
   const signInX = async () => {
+    setIsLoginProcessing(true);
     await auth.signInWithPopup(xProvider).catch((error) => {
       const errorMessage = AuthErrorMessage(error.code);
       errorMessage
         ? setDialogMessage(errorMessage)
         : setDialogMessage(error.message);
-      setDialogTitle("エラー");
+      setDialogTitle("警告");
       setOpenDialog(true);
+      setIsLoginProcessing(false);
     });
   };
 
@@ -298,8 +304,12 @@ export const Auth: FC = () => {
               <Button
                 disabled={
                   isLogin
-                    ? !email || password.length < 6
-                    : !username || !email || password.length < 6 || !profilePic
+                    ? !email || password.length < 6 || isLoginProcessing
+                    : !username ||
+                      !email ||
+                      password.length < 6 ||
+                      !profilePic ||
+                      isLoginProcessing
                 }
                 fullWidth
                 variant="contained"
@@ -311,17 +321,25 @@ export const Auth: FC = () => {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <span css={loginReset} onClick={() => setOpnModal(true)}>
-                    パスワードを忘れた場合
-                  </span>
+                  {isLoginProcessing ? (
+                    <span>パスワードを忘れた場合</span>
+                  ) : (
+                    <span css={loginReset} onClick={() => setOpnModal(true)}>
+                      パスワードを忘れた場合
+                    </span>
+                  )}
                 </Grid>
                 <Grid item>
-                  <span
-                    css={loginToggleMode}
-                    onClick={() => setIsLogin(!isLogin)}
-                  >
-                    {isLogin ? "アカウント作成" : "ログインへ戻る"}
-                  </span>
+                  {isLoginProcessing ? (
+                    <span>{isLogin ? "アカウント作成" : "ログインへ戻る"}</span>
+                  ) : (
+                    <span
+                      css={loginToggleMode}
+                      onClick={() => setIsLogin(!isLogin)}
+                    >
+                      {isLogin ? "アカウント作成" : "ログインへ戻る"}
+                    </span>
+                  )}
                 </Grid>
               </Grid>
 
@@ -331,6 +349,7 @@ export const Auth: FC = () => {
                 sx={{ mt: 6, mb: 1 }}
                 onClick={signInGoogle}
                 startIcon={<GoogleIcon />}
+                disabled={isLoginProcessing}
               >
                 Googleでサインイン
               </Button>
@@ -340,6 +359,7 @@ export const Auth: FC = () => {
                 sx={{ mt: 1, mb: 2 }}
                 onClick={signInX}
                 startIcon={<XIcon />}
+                disabled={isLoginProcessing}
               >
                 Xでサインイン
               </Button>
