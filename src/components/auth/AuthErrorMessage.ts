@@ -49,9 +49,11 @@ export const AuthErrorMessage = (errorCode: string): string => {
     case "auth/invalid-email":
       return "メールアドレスが無効です。";
     case "auth/user-not-found":
-      return "ユーザーが見つかりません。";
+      // return "ユーザーが見つかりません。";
+      return "ログイン情報に誤りがあります。";
     case "auth/wrong-password":
-      return "パスワードが間違っています。";
+      // return "パスワードが間違っています。";
+      return "ログイン情報に誤りがあります。";
     case "auth/weak-password":
       return "パスワードが弱すぎます。";
     case "auth/email-already-in-use":

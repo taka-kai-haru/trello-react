@@ -3,7 +3,7 @@
 ## 📱 Screen Shots
 ![torello_login](https://github.com/taka-kai-haru/trello-react/assets/67408336/90eef854-d627-4b68-9b5f-fd83f99c6f6c)
 ![torello](https://github.com/taka-kai-haru/trello-react/assets/67408336/752d1f1e-7867-4351-8689-84c4a3b6dbb5)
-![torello2](https://github.com/taka-kai-haru/trello-react/assets/67408336/ee86db00-71c1-4b7a-96d8-4e3c857818d1)
+![torello2](https://github.com/taka-kai-haru/trello-react/assets/67408336/69351160-e167-498c-be45-6cc19402f42c)
 
 
 ## 🌐 App URL
