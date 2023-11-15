@@ -438,7 +438,7 @@ const sectionTitleSectionDeleteArea = css`
 
 const sectionList = css`
   padding: 0 20px 0 20px;
-  white-space: nowrap;
+  white-space: normal;
   overflow-x: auto;
   height: calc(100vh - 80px);
   display: flex;
